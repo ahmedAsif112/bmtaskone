@@ -1,17 +1,31 @@
 @import "tailwindcss";
 
+/* Theme Variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Tailwind Theme */
+@theme {
+  /* Custom Breakpoints */
+  --breakpoint-mobile: 30rem;   /* 480px */
+  --breakpoint-tablet: 48rem;   /* 768px */
+  --breakpoint-laptop: 64rem;   /* 1024px */
+  --breakpoint-desktop: 80rem;  /* 1280px */
+  --breakpoint-wide: 96rem;     /* 1536px */
+}
+
+/* Variable Mapping */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +33,30 @@
   }
 }
 
+/* Global */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+.ant-input::placeholder {
+  color: black !important;
+}
+
+@media (max-width: 640px) {
+  .ant-input,
+  .ant-input-password input,
+  .ant-input-affix-wrapper {
+    font-size: 16px !important; /* prevents iOS auto-zoom on focus */
+  }
+
+  .ant-form-item {
+    margin-bottom: 16px !important;
+  }
+}
+.login-stage {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  height: 650px;
 }
