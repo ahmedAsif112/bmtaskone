@@ -1,16 +1,25 @@
 import { Button, Progress } from "antd";
 import Image from "next/image";
 
-// ── Card data ──
-// Swap/extend this array to render more course cards.
-const courses = [
+// Course type
+type Course = {
+    id: number;
+    image: string;
+    category: string;
+    title: string;
+    progress: number;
+    status: "completed" | "continue";
+};
+
+// Card data
+const courses: Course[] = [
     {
         id: 1,
         image: "/assets/card.svg",
         category: "Course",
         title: "Best Tajweed course, All Tajweed from scratch to advanced",
         progress: 100,
-        status: "completed", // "completed" | "continue"
+        status: "completed",
     },
     {
         id: 2,
@@ -47,12 +56,13 @@ function CourseIcon() {
     );
 }
 
-function CourseCard({ course }) {
+// FIXED TYPE HERE
+function CourseCard({ course }: { course: Course }) {
     const isCompleted = course.status === "completed";
 
     return (
         <div className="flex items-center gap-3 bg-[#F5F6F8] border border-gray-200 rounded-xl p-3 w-full md:w-[395px] md:shrink-0">
-            {/* Thumbnail */}
+
             <div className="shrink-0 w-[104px] h-16 rounded-lg overflow-hidden bg-white">
                 <Image
                     src={course.image}
@@ -63,25 +73,25 @@ function CourseCard({ course }) {
                 />
             </div>
 
-            {/* Content */}
             <div className="flex flex-col gap-1 flex-1 min-w-0">
-                {/* Badge */}
+
                 <div className="flex items-center gap-1.5">
                     <span className="w-4 h-4 rounded-[4px] bg-emerald-500 flex items-center justify-center shrink-0">
                         <CourseIcon />
                     </span>
-                    <span className="text-[11px] text-gray-500 font-medium">{course.category}</span>
+
+                    <span className="text-[11px] text-gray-500 font-medium">
+                        {course.category}
+                    </span>
                 </div>
 
-                {/* Title */}
                 <p className="text-[12px] font-semibold text-gray-900 leading-[14px] line-clamp-2">
                     {course.title}
                 </p>
 
-                {/* Progress + Action */}
                 <div className="flex items-center gap-3">
                     <div className="flex-1 min-w-0">
-                        <p className="text-[11px] text-gray-500 whitespace-nowrap">
+                        <p className="text-[11px] text-gray-500">
                             Progress{" "}
                             <span className="font-bold text-gray-800">
                                 {course.progress}%
@@ -92,15 +102,15 @@ function CourseCard({ course }) {
                             percent={course.progress}
                             showInfo={false}
                             strokeColor="#22C55E"
-
                         />
                     </div>
 
                     <Button
                         type="default"
-                        className={`!shrink-0 !w-16 !h-[22px] !rounded-md !text-[10px] !font-medium !flex !items-center !justify-center ${isCompleted
-                            ? "!bg-teal-600 !text-white"
-                            : "!bg-white !text-gray-500 !border !border-gray-300"
+                        className={`!w-16 !h-[22px] !rounded-md !text-[10px]
+                        ${isCompleted
+                                ? "!bg-teal-600 !text-white"
+                                : "!bg-white !text-gray-500 !border !border-gray-300"
                             }`}
                     >
                         {isCompleted ? "Completed" : "Continue"}
