@@ -6,26 +6,26 @@ import FormLogin from "@/src/components/Form";
 import LoginBottom from "@/src/components/LoginBottom";
 
 const illustrations = [
-    { src: "/assets/login/loginHat.svg", pos: "-translate-x-[330px] -translate-y-[170px] w-[11%]" },
-    { src: "/assets/login/Cube boy.svg", pos: "-translate-x-[450px] -translate-y-[150px] w-[4%]" },
-    { src: "/assets/login/Bulb boy.svg", pos: "-translate-x-[520px] translate-y-[-90px] w-[6%]" },
+    { src: "/assets/login/loginHat.svg", pos: "-translate-x-[280px] -translate-y-[160px] w-[29%]" },
+    { src: "/assets/login/Cube boy.svg", pos: "-translate-x-[350px] -translate-y-[140px] w-[12%]" },
+    { src: "/assets/login/Bulb boy.svg", pos: "-translate-x-[400px] translate-y-[-80px] w-[20%]" },
 
-    { src: "/assets/login/Cube girl.svg", pos: "translate-x-[200px] -translate-y-[170px] w-[8%]" },
-    { src: "/assets/login/Bulb.svg", pos: "translate-x-[360px] -translate-y-[160px] w-[6%]" },
-    { src: "/assets/login/girl-Cube.svg", pos: "translate-x-[460px] translate-y-[-80px] w-[8%]" },
+    { src: "/assets/login/Cube girl.svg", pos: "translate-x-[150px] -translate-y-[160px] w-[18%]" },
+    { src: "/assets/login/Bulb.svg", pos: "translate-x-[270px] -translate-y-[90px] w-[16%]" },
+    { src: "/assets/login/girl-Cube.svg", pos: "translate-x-[350px] translate-y-[-40px] w-[18%]" },
 
-    { src: "/assets/login/Login-Books.svg", pos: "-translate-x-[550px] translate-y-[6px] w-[12%]" },
-    { src: "/assets/login/Login-Boy.svg", pos: "-translate-x-[400px] translate-y-[-50px] w-[14%]" },
+    { src: "/assets/login/Login-Books.svg", pos: "-translate-x-[430px] translate-y-[70px] w-[35%]" },
+    { src: "/assets/login/Login-Boy.svg", pos: "-translate-x-[340px] translate-y-[15px] w-[48%]" },
 
-    { src: "/assets/login/Girl.svg", pos: "translate-x-[240px] translate-y-[-50px] w-[17%]" },
-    { src: "/assets/login/girl globe.svg", pos: "translate-x-[420px] translate-y-[45px] w-[9%]" },
-    { src: "/assets/login/girl Plant 1.svg", pos: "translate-x-[515px] translate-y-[68px] w-[5%]" },
+    { src: "/assets/login/Girl.svg", pos: "translate-x-[170px] translate-y-[15px] w-[48%]" },
+    { src: "/assets/login/girl globe.svg", pos: "translate-x-[340px] translate-y-[65px] w-[25%]" },
+    { src: "/assets/login/girl Plant 1.svg", pos: "translate-x-[420px] translate-y-[88px] w-[18%]" },
 ];
 
 export default function Page() {
     return (
         <div
-            className='h-screen overflow-hidden flex flex-col
+            className='h-screen overflow-hidden flex flex-col items-center justify-center
             bg-[url("/assets/login/Login-BG.svg")]
             bg-cover bg-center bg-no-repeat'
         >

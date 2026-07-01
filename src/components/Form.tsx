@@ -8,8 +8,8 @@ const FormLogin = () => {
     };
 
     return (
-        <div className="flex flex-1 items-center justify-center px-4 sm:px-6 w-full">
-            <div className="!rounded-[28px] sm:!rounded-3xl !bg-white !px-6 !py-4 lg:!px-7 lg:!py-3 !shadow-xl w-full max-w-md self-center">
+        <div className="flex flex-1 items-center justify-center px-8 sm:px-8 w-full">
+            <div className="!rounded-[28px] sm:!rounded-3xl !bg-white !px-6 !py-4 lg:!px-10 lg:!py-5 !shadow-xl w-full max-w-md self-center">
 
                 {/* Heading */}
                 <h1 className="!text-center !text-[24px] lg:!text-[26px] xl:!text-[30px] !font-extrabold !text-gray-900 !mb-2">
