@@ -1,10 +1,69 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRouter } from "next/navigation";
 import { LockOutlined, UserOutlined, EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
+import CryptoJS from "crypto-js";
+
+interface LoginFormValues {
+    username: string;
+    password: string;
+}
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const PASSWORD_SECRET_KEY = process.env.NEXT_PUBLIC_PASSWORD_SECRET_KEY;
 
 const FormLogin = () => {
-    const onFinish = (values: any) => {
-        console.log("Received values of form:", values);
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
+    const onFinish = async (values: LoginFormValues) => {
+        if (!BACKEND_URL || !PASSWORD_SECRET_KEY) {
+            message.error("Missing backend URL or secret key in environment config.");
+            return;
+        }
+
+        setLoading(true);
+        try {
+            // Encrypt the password with the shared secret before it leaves the browser
+            const encryptedPassword = CryptoJS.AES.encrypt(
+                values.password,
+                PASSWORD_SECRET_KEY
+            ).toString();
+
+            const response = await fetch(`${BACKEND_URL}/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: values.username,
+                    password: encryptedPassword,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data?.message || "Login failed. Please check your credentials.");
+            }
+
+            // NOTE: adjust these keys based on the actual shape of your API's success response
+            console.log("Login success:", data);
+            message.success("Login successful!");
+
+            // Example: persist the token if the API returns one
+            if (data?.token) {
+                localStorage.setItem("token", data.token);
+            }
+
+            router.push("/dashboard");
+
+        } catch (error: any) {
+            console.error("Login error:", error);
+            message.error(error?.message || "Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -82,6 +141,7 @@ const FormLogin = () => {
                         <Button
                             block
                             htmlType="submit"
+                            loading={loading}
                             className="!h-11 lg:!h-[46px] xl:!h-[45px] !rounded-full !bg-[#01A49E] !text-sm lg:!text-[12px] xl:!text-base !font-bold !text-white !shadow-lg hover:!opacity-90"
                         >
                             Login
